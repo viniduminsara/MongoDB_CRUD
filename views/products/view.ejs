@@ -1,0 +1,39 @@
+
+<%- include('../partials/head') %>
+
+<%- include('../partials/navbar') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col mt-4 mb-4">
+            <h1>Product Details</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+            <% if (product.image && product.image.data) { %>
+                <img src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toString('base64') %>" class="card-img-top" alt="<%= product.name %>">
+            <% } else { %>
+                <img src="https://placehold.co/600x430?text=<%= product.name %>" class="card-img-top" alt="Placeholder Image">
+            <% } %>
+        </div>
+        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+            <h3 style="display: inline;"><%= product.name  %></h3>
+            <span class="badge text-bg-success m-2"><%= product.category %></span>
+            <h5 class="mb-3">Price : Rs.<%= product.price %></h5>
+            <% if(product.qty !== 0 && product.category !== 'bakery'){ %>
+                <h5 class="mb-3"><%= product.qty %>kg Available</h5>
+            <%}else if(product.qty !== 0 && product.category === 'bakery'){%>
+                <h5 class="mb-3"><%= product.qty %> qty Available<h5> 
+            <% }else{ %>
+                <h5 class="mb-3" style="color: red;">Out of Stock</h5> 
+            <% } %>
+            <a href="/products/<%= product.id %>/edit" class="btn btn-warning">Update</a>
+            <form action="/products/<%= product.id %>?_method=DELETE" method="post" style="display: inline;">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

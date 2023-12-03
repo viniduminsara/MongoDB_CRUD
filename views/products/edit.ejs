@@ -1,0 +1,47 @@
+<%- include('../partials/head') %>
+
+<%- include('../partials/navbar') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col mt-4 mb-4">
+            <h1>Edit Details of <%= product.name %></h1>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-6">
+            <% if (product.image && product.image.data) { %>
+                <img src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toString('base64') %>" class="card-img-top" alt="<%= product.name %>">
+            <% } else { %>
+                <img src="https://placehold.co/600x430?text=<%= product.name %>" class="card-img-top" alt="Placeholder Image">
+            <% } %>
+        </div>
+    </div>
+    <div class="row">
+        <form action="/products/<%= product.id %>?_method=PUT" method="post">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Name</span>
+                <input type="text" class="form-control" name="name" placeholder="Enter name of the product" value="<%= product.name %>" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Price</span>
+                <input type="number" class="form-control" name="price" placeholder="Enter price of the product" value="<%= product.price %>" required>
+              </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Quantity</span>
+                <input type="number" class="form-control" name="qty" placeholder="Enter qty of the product" value="<%= product.qty %>" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Category</span>
+                <select class="form-select" name="category" aria-label="Default select example" required>
+                    <% for(let category of categories) { %>
+                        <option value="<%= category %>" <%= (category === product.category) ? 'selected' : '' %>><%= category %></option>
+                    <% } %>
+                </select>
+            </div>
+            <button class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
