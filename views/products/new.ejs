@@ -12,19 +12,19 @@
         <form action="/products" method="post" enctype="multipart/form-data">
             <div class="input-group mb-3">
                 <span class="input-group-text">Name</span>
-                <input type="text" class="form-control" name="name" placeholder="Enter name of the product" required>
+                <input type="text" class="form-control" name="name" placeholder="Enter name of the product">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Price</span>
-                <input type="number" class="form-control" name="price" placeholder="Enter price of the product" required>
+                <input type="number" class="form-control" name="price" placeholder="Enter price of the product">
               </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Quantity</span>
-                <input type="number" class="form-control" name="qty" placeholder="Enter qty of the product" required>
+                <input type="number" class="form-control" name="qty" placeholder="Enter qty of the product">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Category</span>
-                <select class="form-select" name="category" aria-label="Default select example" required>
+                <select class="form-select" name="category" aria-label="Default select example">
                     <option selected>Select category of the product</option>
                     <% for(let category of categories) { %>
                         <option value="<%= category %>"><%= category %></option>
