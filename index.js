@@ -146,6 +146,12 @@ app.get('/suppliers/:id', catchAsync(async(req, res) => {
     res.render('suppliers/view', {supplier, currentPage: supplier.name });
 }));
 
+app.put('/suppliers/:id', catchAsync(async(req, res) => {
+    const { id } = req.params;
+    const supplier = await Supplier.findByIdAndUpdate(id, req.body, {runValidators: true, new: true});
+    res.redirect(`/suppliers/${supplier.id}`);
+}));
+
 app.post('/suppliers/:id/products', upload.single('image'), catchAsync(async(req, res) => {
     const { name, price, qty, category } = req.body;
     const { id } = req.params;
@@ -177,10 +183,15 @@ app.post('/suppliers/:id/products', upload.single('image'), catchAsync(async(req
     res.redirect(`/suppliers/${id}`);
 }));
 
-app.get('/suppliers/:id/products/new', async(req, res) => {
+app.get('/suppliers/:id/products/new', catchAsync(async(req, res) => {
     const supplier = await Supplier.findById(req.params.id);
     res.render('products/new', { supplier, categories, currentPage: 'New Product' });
-});
+}));
+
+app.get('/suppliers/:id/edit', catchAsync(async(req, res) => {
+    const supplier = await Supplier.findById(req.params.id);
+    res.render('suppliers/edit', {supplier, currentPage: 'Edit Supplier'});
+}));
 
 // app.get('*', (req, res) => {
 //     res.render('products/notfound', {currentPage: '404 Not Found'});

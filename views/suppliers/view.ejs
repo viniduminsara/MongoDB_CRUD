@@ -10,6 +10,10 @@
                     <h3 class="card-title"><%= supplier.name %></h3>
                     <p class="card-text"><i class="fa-solid fa-house m-2"></i><%= supplier.address %></p>
                     <p class="card-text"><i class="fa-solid fa-envelope m-2"></i><%= supplier.email %></p>
+                    <a href="/suppliers/<%= supplier.id %>/edit" class="btn btn-warning">Edit Details</a>
+                    <form action="/suppliers/<%= supplier.id %>?_method=DELETE" method="post" class="d-inline">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
             <div class="col-md-7">

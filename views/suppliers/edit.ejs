@@ -1,0 +1,30 @@
+<%- include('../partials/head') %>
+
+<%- include('../partials/navbar') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col mt-4 mb-4">
+            <h1>Edit Supplier</h1>
+        </div>
+    </div>
+    <div class="row">
+        <form action="/suppliers/<%= supplier.id %>?_method=PUT" method="post" >
+            <div class="input-group mb-3">
+                <span class="input-group-text">Name</span>
+                <input type="text" class="form-control" name="name" placeholder="Enter name of the supplier" value="<%= supplier.name %>">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Address</span>
+                <input type="text" class="form-control" name="address" placeholder="Enter address of the supplier" value="<%= supplier.address %>">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Email</span>
+                <input type="text" class="form-control" name="email" placeholder="Enter email of the supplier" value="<%= supplier.email %>">
+            </div>
+            <button class="btn btn-primary">Update Details</button>
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
