@@ -152,6 +152,11 @@ app.put('/suppliers/:id', catchAsync(async(req, res) => {
     res.redirect(`/suppliers/${supplier.id}`);
 }));
 
+app.delete('/suppliers/:id', catchAsync(async(req, res) => {
+    await Supplier.findByIdAndDelete(req.params.id);
+    res.redirect('/suppliers');
+}));
+
 app.post('/suppliers/:id/products', upload.single('image'), catchAsync(async(req, res) => {
     const { name, price, qty, category } = req.body;
     const { id } = req.params;
