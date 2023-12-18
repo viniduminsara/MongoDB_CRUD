@@ -134,11 +134,16 @@ app.get('/suppliers', async(req, res) => {
 app.post('/suppliers', async(req, res) => {
     const supplier = new Supplier(req.body);
     await supplier.save();
-    res.send('saved');
+    res.redirect(`/suppliers/${supplier.id}`);
 });
 
 app.get('/suppliers/new', (req, res) => {
     res.render('suppliers/new', {currentPage: 'New Supplier'});
+});
+
+app.get('/suppliers/:id', async(req, res) => {
+    const supplier = await Supplier.findById(req.params.id);
+    res.render('suppliers/view', {supplier, currentPage: supplier.name });
 });
 
 // app.get('*', (req, res) => {

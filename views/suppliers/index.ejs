@@ -11,13 +11,23 @@
             <a href="/suppliers/new" class="btn btn-primary">New Supplier</a>
         </div>
     </div>
-    <div class="row">
-        <ul>
-            <% for(let supplier of suppliers) { %>
-                <li><%= supplier.name %></li>
-            <% } %>
-        </ul>
-    </div>
+    <% for (let i = 0; i < suppliers.length; i++) { %>
+        <% if (i % 4 === 0) { %>
+            <div class="row">
+        <% } %>
+        <div class="col col-lg-3 col-md-3 col-sm-6 col-12">
+            <div class="card mb-4" style="padding: 15px;">
+                <h3 class="card-title"><%= suppliers[i].name %></h3>
+                <p class="card-text text-muted"><i class="fa-solid fa-house m-2"></i><%= suppliers[i].address %></p>
+                <p class="card-text text-muted"><i class="fa-solid fa-envelope m-2"></i><%= suppliers[i].email %></p>
+                <a href="/suppliers/<%= suppliers[i].id %>" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+
+        <% if ((i + 1) % 4 === 0 || (i + 1) === suppliers.length) { %>
+            </div>
+        <% } %>
+    <% } %>
 </div>
 
 <%- include('../partials/footer') %>
