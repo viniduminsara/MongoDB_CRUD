@@ -24,6 +24,10 @@ const productSchema = new mongoose.Schema({
     image: {
         data: Buffer, // Binary image data
         contentType: String // Mime type of the image (e.g., 'image/jpeg')
+    },
+    supplier: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Supplier'
     }
 
 });

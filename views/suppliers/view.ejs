@@ -3,18 +3,43 @@
 <%- include('../partials/navbar') %>
 
 <div class="container">
-    <div class="card mb-3">
+    <div class="card mt-3 mb-3">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="card-body">
                     <h3 class="card-title"><%= supplier.name %></h3>
                     <p class="card-text"><i class="fa-solid fa-house m-2"></i><%= supplier.address %></p>
                     <p class="card-text"><i class="fa-solid fa-envelope m-2"></i><%= supplier.email %></p>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="card-body">
-                    <h3 class="card-title">Products</h3>
+                    <div class="d-flex justify-content-end mb-3">
+                        <a href="/suppliers/<%= supplier.id %>/products/new" class="btn btn-primary">Add New Product</a>
+                    </div>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let product of supplier.products) { %>
+                                <tr>
+                                    <th scope="row"><%= product.name %></th>
+                                    <td><%= product.price %></td>
+                                    <td><%= product.qty %></td>
+                                    <td><%= product.category %></td>
+                                    <td><a href="/products/<%= product.id %>" class="btn btn-secondary">View</a></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>

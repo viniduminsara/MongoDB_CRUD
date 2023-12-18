@@ -28,6 +28,7 @@
             <% }else{ %>
                 <h5 class="mb-3" style="color: red;">Out of Stock</h5> 
             <% } %>
+            <h5 class="mb-3">Supplier : <%= product.supplier.name %></h5>
             <a href="/products/<%= product.id %>/edit" class="btn btn-warning">Update</a>
             <form action="/products/<%= product.id %>?_method=DELETE" method="post" style="display: inline;">
                 <button class="btn btn-danger">Delete</button>
