@@ -13,7 +13,13 @@ const supplierSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    products: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Product'
+        }
+    ]
 
 });
 

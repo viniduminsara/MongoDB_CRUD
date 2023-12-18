@@ -131,6 +131,16 @@ app.get('/suppliers', async(req, res) => {
     res.render('suppliers/index', {suppliers, currentPage: 'Suppliers'});
 });
 
+app.post('/suppliers', async(req, res) => {
+    const supplier = new Supplier(req.body);
+    await supplier.save();
+    res.send('saved');
+});
+
+app.get('/suppliers/new', (req, res) => {
+    res.render('suppliers/new', {currentPage: 'New Supplier'});
+});
+
 // app.get('*', (req, res) => {
 //     res.render('products/notfound', {currentPage: '404 Not Found'});
 // });

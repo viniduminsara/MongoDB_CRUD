@@ -1,0 +1,23 @@
+<%- include('../partials/head') %>
+
+<%- include('../partials/navbar') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Suppliers</h1>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end">
+            <a href="/suppliers/new" class="btn btn-primary">New Supplier</a>
+        </div>
+    </div>
+    <div class="row">
+        <ul>
+            <% for(let supplier of suppliers) { %>
+                <li><%= supplier.name %></li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
